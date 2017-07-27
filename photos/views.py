@@ -3,6 +3,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.http import HttpResponse
 from django.views import generic
 from .models import Photo
 
@@ -16,4 +17,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Photo
     template_name = 'photos/detail.html'
+
+def first_photos(request):
+    return HttpResponse(Photo.objects.all()[:30])
 
