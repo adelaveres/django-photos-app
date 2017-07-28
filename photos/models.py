@@ -6,7 +6,8 @@ import xml.etree.ElementTree as xmlET
 
 api_key = 'a0752bd84a6df8ca859a803cea5edf63'
 api_secret = 'eda5eab58b4c1e2a'
-accepted_colors = ['red','green','blue','yellow','orange','brown','black','white','gray','purple','pink']
+accepted_colors = ['red', 'green', 'blue', 'yellow', 'orange', 'brown', 'black', 'white', 'gray', 'purple', 'pink']
+
 
 class Photo(models.Model):
     photo_id = models.CharField(max_length=20, default='')
@@ -15,6 +16,17 @@ class Photo(models.Model):
     color1 = models.CharField(max_length=20, default='')
     color2 = models.CharField(max_length=20, default='')
     color3 = models.CharField(max_length=20, default='')
+
+    @property
+    def colors(self):
+        result = []
+        if self.color1:
+            result.append(self.color1)
+        if self.color2:
+            result.append(self.color2)
+        if self.color3:
+            result.append(self.color3)
+        return result
 
 # class Color(models.Model):
 #     color = models.CharField(max_length=20)
@@ -33,6 +45,23 @@ class Photo(models.Model):
 
 def save_photo(photo_id, url, title, colors):
     l = len(colors)
+
+    # def color_at_index(index):
+    #     try:
+    #         return colors[index]
+    #     except IndexError:
+    #         return None
+
+    # REFACTORED:
+    # p = Photo(
+    #     photo_id=photo_id,
+    #     color1=color_at_index(0),
+    #     color2=color_at_index(1),
+    #     color3=color_at_index(2),
+    #     url=url,
+    #     title=title
+    # )
+    # p.save()
 
     if l == 1:
         color1 = colors[0]
