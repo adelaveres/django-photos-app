@@ -1,6 +1,8 @@
 from django.db import models
 import requests
 import xml.etree.ElementTree as xmlET
+from django.contrib.auth.models import AbstractBaseUser, UserManager
+
 
 # Create your models here.
 
@@ -8,6 +10,15 @@ api_key = 'a0752bd84a6df8ca859a803cea5edf63'
 api_secret = 'eda5eab58b4c1e2a'
 accepted_colors = ['red', 'green', 'blue', 'yellow', 'orange', 'brown', 'black', 'white', 'gray', 'purple', 'pink']
 
+
+# class User(models.Model):
+#     username = models.CharField(max_length=30, default='no_username')
+#     email = models.CharField(max_length=30, default='no_email')
+#     password = models.CharField(max_length=30, default='no_password')
+#     is_authenticated = models.BooleanField(default=True)
+#     is_active = models.BooleanField(default=True)
+#
+#     objects = UserManager()
 
 class Photo(models.Model):
     photo_id = models.CharField(max_length=20, default='')

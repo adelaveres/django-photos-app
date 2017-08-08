@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from photos import views
 
 urlpatterns = [
-    url(r'^photos/', include('photos.urls')),
+    url(r'^social/(?P<backend>[^/]+)/$', views.exchange_token),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^photos/', include('photos.urls'), name='index'),
     url(r'^admin/', admin.site.urls),
 ]

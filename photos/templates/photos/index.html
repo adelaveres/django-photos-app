@@ -1,5 +1,12 @@
 {% load static %}
 <link  rel="stylesheet" type="text/css" href="{% static 'photos/style.css' %}" />
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+{% block content %}
+  <h2>Homepage</h2>
+  <p>Hello {{ user.username }}!</p>
+{% endblock %}
 
 
 {% if photos_list %}

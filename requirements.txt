@@ -1,0 +1,8 @@
+
+Django
+djangorestframework
+social-auth-core
+social-auth-app-django
+requests
+algoliasearch-django
+django-cors-headers
